@@ -52,5 +52,6 @@ struct SideMenuHeaderView: View {
 struct SideMenuHeaderView_Previews: PreviewProvider {
     static var previews: some View {
         SideMenuHeaderView(isShowing: .constant(true))
+            .preferredColorScheme(.dark)
     }
 }
