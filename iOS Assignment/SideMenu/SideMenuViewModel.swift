@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SideMenuViewModel: Int, CaseIterable {
+enum SideMenuViewModel: Int, CaseIterable, Decodable {
     case Home
     case Users
     case TODOs

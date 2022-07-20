@@ -21,9 +21,7 @@ struct SideMenuView: View {
                     
                 // Call items
                 ForEach(SideMenuViewModel.allCases, id: \.self) { option in
-                    NavigationLink(destination: Text(option.title), label: {
-                        SideMenuOptionView(viewModel: option)
-                    })
+                    NavigationLink(destination: Text(option.title), label: {SideMenuOptionView(viewModel: option)})
                 }
                 Spacer()
             }
