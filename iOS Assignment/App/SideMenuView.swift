@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SideMenuView: View {
+    
     @Binding var isShowing: Bool
     var body: some View {
         ZStack {
