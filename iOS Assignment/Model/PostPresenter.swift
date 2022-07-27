@@ -12,8 +12,12 @@ struct PostPresenter: Identifiable {
     let id = UUID()
     let data: [Datum]
 
-    init(with response: Response) {
+    init(with response: Response<[Datum]>) {
         self.data = response.data
 
+    }
+    
+    init() {
+        data = []
     }
 }

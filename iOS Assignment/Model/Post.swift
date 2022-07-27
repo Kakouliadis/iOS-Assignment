@@ -8,14 +8,14 @@
 import Foundation
 
 // MARK: - Response
-struct Response: Codable {
+struct Response<T: Decodable>: Decodable {
     let code: Int
     let meta: Meta
-    let data: [Datum]
+    let data: T
 }
 
 // MARK: - Datum
-struct Datum: Codable {
+struct Datum: Decodable {
     let id, userID: Int
     let title, body: String
 
@@ -27,11 +27,11 @@ struct Datum: Codable {
 }
 
 // MARK: - Meta
-struct Meta: Codable {
+struct Meta: Decodable {
     let pagination: Pagination
 }
 
 // MARK: - Pagination
-struct Pagination: Codable {
+struct Pagination: Decodable {
     let total, pages, page, limit: Int
 }

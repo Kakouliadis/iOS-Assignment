@@ -13,7 +13,7 @@ struct ContentView: View {
     
     @State private var isShowing: Bool = false
     
-    @ObservedObject var viewModel = APIViewModel()
+    @ObservedObject var viewModel = HomeAPIViewModel()
     
     var body: some View {
        
@@ -62,16 +62,16 @@ struct ContentView_Previews: PreviewProvider {
 
 struct HomeView: View {
     
-    @ObservedObject var viewModel = APIViewModel()
+    @ObservedObject var viewModel = HomeAPIViewModel()
     
     var body: some View {
         
         ZStack {
             Color(.white)
-          /*  List(self.viewModel.presenters) {
-                Text($0.data)
-                } */
-            Text("Feed")
+              List(self.viewModel.presenter.data, id: \.id) {
+                  Text($0.title)
+                }
+           // Text("Feed")
                 .padding()
         }
     }

@@ -13,12 +13,12 @@ import Alamofire
 
 //"https://jsonplaceholder.typicode.com"
 
-final class APIViewModel: ObservableObject {
+final class HomeAPIViewModel: ObservableObject {
     
     private let baseUrl: String = "https://gorest.co.in/public-api/posts"
     private var task: Cancellable? = nil
     
-    @Published var presenters: [PostPresenter] = []
+    @Published var presenter = PostPresenter()
     
     init() {
         
@@ -29,7 +29,7 @@ final class APIViewModel: ObservableObject {
     private func fetchData() {
         
         self.task = AF.request(self.baseUrl, method: .get, parameters: nil)
-               .publishDecodable(type: [Response].self)
+            .publishDecodable(type: Response<[Datum]>.self)
                    .sink(receiveCompletion: { (completion) in
                        switch completion {
                        case .finished:
@@ -39,7 +39,8 @@ final class APIViewModel: ObservableObject {
                        }
                    }, receiveValue: { [weak self ] (response) in
                        switch response.result {
-                       case .success(let model):                self?.presenters = model.map {PostPresenter(with: $0)}
+                       case .success(let model):
+                    self?.presenter = PostPresenter(with: model)
                        case.failure(let error):
                             print(error)
                        }
